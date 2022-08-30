@@ -4,8 +4,10 @@
 
 Dependencies: [SDL2]
 ```console
-$ cd Pong/
+$ cd Pong/src/
 $ chmod +x build.sh
+$ ./build.sh
+$ ./Pong
 ```
 
 ## Resources
