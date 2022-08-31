@@ -1,13 +1,13 @@
-# TicTacToe
+# Pong
+![Pong](/img/Pong.png?raw=true)
 
 ## Quick Start
 
-Dependencies: [SDL2]
+Dependencies: [SDL2], [SDL2_ttf]
 ```console
 $ cd Pong/src/
 $ chmod +x build.sh
 $ ./build.sh
-$ ./Pong
 ```
 
 ## Resources
@@ -16,3 +16,4 @@ $ ./Pong
 - DeltaTime: https://gafferongames.com/post/fix_your_timestep/
 
 [SDL2]: https://www.libsdl.org/
+[SDL2_ttf]: https://wiki.libsdl.org/SDL_ttf/FrontPage 
