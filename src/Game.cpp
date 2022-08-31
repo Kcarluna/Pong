@@ -22,8 +22,8 @@ void Game::update_score(SDL_Renderer *renderer) {
 	m_board.update_score(renderer);
 }
 
-void Game::update() {
-	m_board.update();
+void Game::update(double dt) {
+	m_board.update(dt);
 }
 
 void Game::render(SDL_Renderer *renderer) const {

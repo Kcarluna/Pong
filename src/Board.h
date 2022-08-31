@@ -45,6 +45,6 @@ public:
 	bool scored();
 	void update_score(SDL_Renderer *renderer);
 	bool paddle_hit() const;
-	void update();
+	void update(int dt);
 	void render(SDL_Renderer *renderer) const;
 };

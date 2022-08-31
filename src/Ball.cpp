@@ -55,9 +55,9 @@ void Ball::invert_y() {
 	m_dy = -m_dy;
 }
 
-void Ball::update() {
-	m_ball.x += m_dx;
-	m_ball.y += m_dy;
+void Ball::update(double dt) {
+	m_ball.x += m_dx * dt;
+	m_ball.y += m_dy * dt;
 }
 
 void Ball::render(SDL_Renderer *renderer) const {

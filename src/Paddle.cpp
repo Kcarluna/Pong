@@ -42,7 +42,11 @@ void Paddle::reset() {
 }
 
 void Paddle::move(int dir) {
-	m_paddle.y += dir * m_vy;
+	m_vy = dir;
+}
+
+void Paddle::update(double dt) {
+	m_paddle.y += m_vy * (PADDLE_SPEED * dt);
 }
 
 void Paddle::render(SDL_Renderer *renderer) const {

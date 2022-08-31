@@ -28,8 +28,11 @@ int main() {
 
 	Game game(WIDTH, HEIGHT);
 	game.init(renderer);
+	check_val(SDL_RenderSetLogicalSize(renderer, WIDTH, HEIGHT));
 
-	bool quit = false, paused = false;
+	Uint64 NOW = SDL_GetPerformanceCounter(), LAST = 0;
+	double dt = 0;
+	bool quit = false, paused = true;
 	while (!quit) {
 		SDL_Event event;
 		while (SDL_PollEvent(&event)) {
@@ -48,13 +51,16 @@ int main() {
 				} break;
 			}
 		}
+		LAST = NOW;
+		NOW = SDL_GetPerformanceCounter();
+		dt = ((NOW - LAST) * 1000 / (double) SDL_GetPerformanceFrequency());
 
 		if (game.scored()) {
 			paused = true;
 			game.update_score(renderer);
 		}
 		if (!paused) {
-			game.update();
+			game.update(dt);
 		}
 		game.render(renderer);
 	}

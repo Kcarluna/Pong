@@ -1,14 +1,16 @@
 #pragma once
 #include <SDL.h>
 
+#define BALL_SPEED 0.75
+
 class Ball {
 private:
 	SDL_Rect m_ball;
 	int m_x;
 	int m_y;
 
-	int m_dx = 2;
-	int m_dy = 2;
+	double m_dx = BALL_SPEED;
+	double m_dy = BALL_SPEED;
 public:
 	Ball() = default;
 	Ball(int x, int y, int w, int h);
@@ -23,6 +25,6 @@ public:
 	bool inBoundsY(SDL_Rect *board) const;
 	void invert_x();
 	void invert_y();
-	void update();
+	void update(double dt);
 	void render(SDL_Renderer *renderer) const;
 };

@@ -10,4 +10,4 @@ COMP="-o2"
 
 set -xe
 
-clang++ $COMP $std $CFLAGS $LIBS $MODS main.cpp -o Pong
+clang++ $COMP $std $CFLAGS $LIBS $MODS main.cpp -o Pong && ./Pong

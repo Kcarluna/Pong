@@ -13,6 +13,6 @@ public:
 
 	bool scored();
 	void update_score(SDL_Renderer *renderer);
-	void update();
+	void update(double dt);
 	void render(SDL_Renderer *renderer) const;
 };

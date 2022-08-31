@@ -85,8 +85,8 @@ bool Board::paddle_hit() const {
 	return false;
 }
 
-void Board::update() {
-	m_ball.update();
+void Board::update(int dt) {
+	m_ball.update(dt);
 	const Uint8 *state = SDL_GetKeyboardState(NULL);
 	if (state[SDL_SCANCODE_W] && m_left_paddle.inLBounds(&m_board)) {
 		m_left_paddle.move(UP);
@@ -102,6 +102,8 @@ void Board::update() {
 	} else {
 		m_right_paddle.move(STOP);
 	}
+	m_left_paddle.update(dt);
+	m_right_paddle.update(dt);
 	if (paddle_hit()) {
 		m_ball.invert_x();
 	}

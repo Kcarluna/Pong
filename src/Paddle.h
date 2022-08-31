@@ -1,12 +1,14 @@
 #pragma once
 #include <SDL.h>
 
+#define PADDLE_SPEED 2
+
 class Paddle {
 private:
 	SDL_Rect m_paddle;
 	int m_x;
 	int m_y;
-	int m_vy = 6;
+	int m_vy;
 public:
 	Paddle() = default;
 	Paddle(int x, int y, int w, int h);
@@ -19,5 +21,6 @@ public:
 	bool inUBounds(SDL_Rect *rect) const;
 	void reset();
 	void move(int dir);
+	void update(double dt);
 	void render(SDL_Renderer *renderer) const;
 };
