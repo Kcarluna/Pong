@@ -1,6 +1,6 @@
 #!/bin/sh
 
-std="-std=c++17"
+std="-std=c++20"
 
 CFLAGS=`pkg-config SDL2 --cflags`
 LIBS=`pkg-config SDL2_ttf --libs`

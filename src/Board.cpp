@@ -77,9 +77,15 @@ void Board::update_score(SDL_Renderer *renderer) {
 	SDL_FreeSurface(m_surface);
 }
 
-bool Board::paddle_hit() const {
-	if ((m_ball.get_x() < (m_left_paddle.get_x() + m_left_paddle.get_w()) && ((m_ball.get_y() + m_ball.get_h()) > m_left_paddle.get_y() && m_ball.get_y() < (m_left_paddle.get_y() + m_left_paddle.get_h()))) ||
-		((m_ball.get_x() + m_ball.get_w()) > m_right_paddle.get_x() && ((m_ball.get_y() + m_ball.get_h()) > m_right_paddle.get_y() && m_ball.get_y() < (m_right_paddle.get_y() + m_right_paddle.get_h())))) {
+bool Board::left_paddle_hit() const {
+	if ((m_ball.get_x() < (m_left_paddle.get_x() + m_left_paddle.get_w()) && ((m_ball.get_y() + m_ball.get_h()) > m_left_paddle.get_y() && m_ball.get_y() < (m_left_paddle.get_y() + m_left_paddle.get_h())))) {
+		return true;
+	}
+	return false;
+}
+
+bool Board::right_paddle_hit() const {
+	if ((m_ball.get_x() + m_ball.get_w()) > m_right_paddle.get_x() && ((m_ball.get_y() + m_ball.get_h()) > m_right_paddle.get_y() && m_ball.get_y() < (m_right_paddle.get_y() + m_right_paddle.get_h()))) {
 		return true;
 	}
 	return false;
@@ -104,7 +110,16 @@ void Board::update(int dt) {
 	}
 	m_left_paddle.update(dt);
 	m_right_paddle.update(dt);
-	if (paddle_hit()) {
+	if (left_paddle_hit()) {
+		double intersect = (m_left_paddle.get_y() + (PADDLE_HEIGHT / 2)) - m_ball.get_y();
+		double intersect_normalized = intersect/ (PADDLE_HEIGHT / 2);
+		double bounce_angle = intersect_normalized * BALL_BOUNCE;
+		m_ball.hit(bounce_angle);
+	} else if (right_paddle_hit()) {
+		double intersect = (m_right_paddle.get_y() + (PADDLE_HEIGHT / 2)) - m_ball.get_y();
+		double intersect_normalized = intersect/ (PADDLE_HEIGHT / 2);
+		double bounce_angle = intersect_normalized * BALL_BOUNCE;
+		m_ball.hit(bounce_angle);
 		m_ball.invert_x();
 	}
 

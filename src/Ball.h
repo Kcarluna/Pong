@@ -1,5 +1,6 @@
 #pragma once
 #include <SDL.h>
+#include <cmath>
 
 #define BALL_SPEED 0.75
 
@@ -8,6 +9,7 @@ private:
 	SDL_Rect m_ball;
 	int m_x;
 	int m_y;
+	double m_acceleration;
 
 	double m_dx = BALL_SPEED;
 	double m_dy = BALL_SPEED;
@@ -23,6 +25,7 @@ public:
 	bool inLBoundsX(SDL_Rect *board) const;
 	bool inUBoundsX(SDL_Rect *board) const;
 	bool inBoundsY(SDL_Rect *board) const;
+	void hit(double bounce_angle);
 	void invert_x();
 	void invert_y();
 	void update(double dt);

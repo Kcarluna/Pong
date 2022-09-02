@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL.h>
 #include <SDL_ttf.h>
+#include <numbers>
 #include "Paddle.h"
 #include "Ball.h"
 
@@ -10,6 +11,7 @@
 
 #define BALL_WIDTH 40
 #define BALL_HEIGHT 40
+#define BALL_BOUNCE (6 * (std::numbers::pi / 12))
 
 #define FONT_SIZE 64
 
@@ -44,7 +46,8 @@ public:
 
 	bool scored();
 	void update_score(SDL_Renderer *renderer);
-	bool paddle_hit() const;
+	bool left_paddle_hit() const;
+	bool right_paddle_hit() const;
 	void update(int dt);
 	void render(SDL_Renderer *renderer) const;
 };

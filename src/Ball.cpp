@@ -24,6 +24,9 @@ int Ball::get_h() const {
 void Ball::reset() {
 	m_ball.x = m_x;
 	m_ball.y = m_y;
+	m_dx = BALL_SPEED;
+	m_dy = BALL_SPEED;
+	m_acceleration = 0.0;
 }
 
 bool Ball::inLBoundsX(SDL_Rect *board) const {
@@ -45,6 +48,12 @@ bool Ball::inBoundsY(SDL_Rect *board) const {
 		return true;
 	}
 	return false;
+}
+
+void Ball::hit(double bounce_angle) {
+	m_acceleration += 0.1;
+	m_dx = (BALL_SPEED + m_acceleration) * std::cos(bounce_angle);
+	m_dy = (BALL_SPEED + m_acceleration) * -std::sin(bounce_angle);
 }
 
 void Ball::invert_x() {
